@@ -1,0 +1,12 @@
+# phase 1
+blktrace -d /dev/sdb -w time(s)
+
+# phase 2
+blkparse -i sdb -d sdb.blktrace.bin
+
+# phase 3
+btt -i sdb.blktrace.bin -l sdb.d2c_latency
+btt -i sdb.blktrace.bin -q sdb.q2c_latency
+btt -i sdb.blktrace.bin -B sdb.offset
+btt -i sdb.blktrace.bin -q sdb.q2c_latency
+btt -i sdb.blktrace.bin -m seek_freq -s seek
